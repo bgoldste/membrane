@@ -8,11 +8,13 @@
    <nav>
  
         <a href="/">Home</a>
-        <a href="{% url 'socialauth_begin' 'twitter' %}">Twitter</a>
+        <a href="{% url 'socialauth_begin' 'twitter' %}">Twitter Authentication</a>
       
         {% if user.is_authenticated %}
         {{user}}
          <a href ="/logout"> Logout </a>
+         <a href = "/send_tweet"> Send Tweet</a>
+          <a href = "/send_tweet2"> Send Tweet2</a>
 
         
         {% else %}
@@ -28,7 +30,16 @@
    		
  
 </nav>
+	 {% if user.is_authenticated %}
+	 <h3>Welcome {{user}}</h3>
+     {{is}}
+     <h2>Would you like to send a tweet?</h2>
 
+    {{tweets}}
+    </form>
+	 {% endif %}
     {% block content %}{% endblock %}
+
+
     </body>
 </html>

@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from user_system.views import MyView, UserDetailView
+from user_system.views import MyView, UserDetailView, twitter_view, TweetView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import admin
@@ -27,6 +27,9 @@ urlpatterns = patterns('',
     url(r'^users/(?P<slug>[-_\w]+)/$', UserDetailView.as_view(), name='article-detail'),
     url(r'^logout/$', 'django.contrib.auth.views.logout' , {'next_page' : '/login'}, )
     	,
+    url(r'^send_tweet/$', twitter_view ),
+    url(r'^send_tweet2/$', TweetView.as_view(success_url = "/send_tweet2")),
+    
      )
    
 #r'^blog/(?P<year>\d{4})/$'2 
