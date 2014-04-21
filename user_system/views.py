@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.conf import settings
 from django.views.generic.edit import CreateView
-
+import tweepy
 
 # Create your views here.
 
@@ -35,8 +35,40 @@ class MyView(TemplateView):
 class TweetView(CreateView):
 	fields = ['original_tweet']
 	model = TweetToSend
-	succes_url = '/send_tweet2'
+	success_url = '/send_tweet2'
 	form_class = TweetForm
+	def post(self, request, *args, **kwargs):
+		
+		form = TweetForm(request.POST)
+		if form.is_valid():
+
+			data = form.cleaned_data
+  			field = data['original_tweet']
+  			
+			current_user = UserSocialAuth.objects.get(user__username = request.user)
+			consumer_key = settings.TWITTER_CONSUMER_KEY
+			consumer_secret = settings.TWITTER_CONSUMER_SECRET
+			access_token = current_user.tokens['oauth_token']
+			access_token_secret = current_user.tokens['oauth_token_secret']
+
+			auth = tweepy.OAuthHandler(consumer_key, consumer_secret)	
+			auth.set_access_token(access_token, access_token_secret)
+
+			api = tweepy.API(auth)
+
+			# If the authentication was successful, you should
+			# see the name of the account print out
+		
+
+			# If the application settings are set for "Read and Write" then
+			# this line should tweet out the message to your account's 
+			# timeline. The "Read and Write" setting is on https://dev.twitter.com/apps
+			api.update_status(field)
+
+			return HttpResponse("<html><body>Tweet sent!!!!</body></html>")
+
+
+
 
 
 	
@@ -72,4 +104,17 @@ def twitter_view(request):
 
 	return HttpResponse("<html><body>Tweet sent!</body></html>")
 
+def send_tweet(request, str):	
+	current_user = UserSocialAuth.objects.get(user__username = request.user)
+	consumer_key = settings.TWITTER_CONSUMER_KEY
+	consumer_secret = settings.TWITTER_CONSUMER_SECRET		
+	access_token = current_user.tokens['oauth_token']
+	access_token_secret = current_user.tokens['oauth_token_secret']
+
+	auth = tweepy.OAuthHandler(consumer_key, consumer_secret)	
+	auth.set_access_token(access_token, access_token_secret)
+
+	api = tweepy.API(auth)
+
+	api.update_status(str)
 
