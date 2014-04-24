@@ -3,7 +3,9 @@ from user_system.views import MyView, UserDetailView, twitter_view, TweetView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import admin
+from django.conf.urls.static import static
 from django.contrib.auth.views import login, logout
+from django.conf import settings
 from django.http import HttpResponse
 import requests
 admin.autodiscover()
@@ -29,9 +31,10 @@ urlpatterns = patterns('',
     	,
     url(r'^send_tweet/$', twitter_view ),
     url(r'^send_tweet2/$', TweetView.as_view(success_url = "/send_tweet2")),
-    
-     )
-   
+     
+     ) 
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 #r'^blog/(?P<year>\d{4})/$'2 
 
 

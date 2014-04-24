@@ -39,7 +39,7 @@ class TweetForm(ModelForm):
 
 		
 		if (contains_blacklist(tweet) == 0):
-			raise ValidationError("Error bad word!!!")
+			raise ValidationError("Would you kiss your mother with that mouth? Try again, smarty-pants.")
 		
 		return tweet
 		"""

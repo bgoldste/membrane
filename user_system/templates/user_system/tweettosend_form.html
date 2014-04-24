@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container theme-showcase" role="main">
+
+
+<div class="jumbotron">
+<h2>Wanna send a tweet, partner?</h2>
+{% if form.errors %}
+<div class="alert alert-danger alert-dismissable">
+<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+{{form.original_tweet.errors}}
+</div>
+{% endif %}
+
+
+<form action="" method="POST" >{% csrf_token %}
+
+
+    <p>{{ form.original_tweet }}</p>
+    <button  type="submit" value="Create" class="btn btn-primary btn-lg" />Tweet!  &raquo;</button>
+
+
+
+</form>
+
+</div>
+</div>
+
+
+
+
+{% endblock %}

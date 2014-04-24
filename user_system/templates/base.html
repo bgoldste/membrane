@@ -1,29 +1,80 @@
 <!DOCTYPE html>
-<html>
-    <head>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+     {% load staticfiles %}
+    <link href="{% static "user_system/css/bootstrap.min.css" %}" rel="stylesheet">
+
+    {% load staticfiles %}
+    <link href="{% static "user_system/base.css" %}" rel="stylesheet">
+
+   
+  
+
+
         <title>Social Membrane</title>
+ 
+
+     <style type="text/css"></style>
+
+
     </head>
 
     <body>
-   <nav>
- 
-        <a href="/">Home</a>
-        <a href="{% url 'socialauth_begin' 'twitter' %}">Twitter Authentication</a>
-      
+
+
+    <div class="container">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Home</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="{% url 'socialauth_begin' 'twitter' %}">Twitter Connect</a></li>
+           
+        <li>
+        <a href="{% url 'socialauth_begin' 'twitter' %}">Twitter 
+        Authentication</a>
+        </li>
+       
         {% if user.is_authenticated %}
-        {{user}}
+       
+
+        <li> 
          <a href ="/logout"> Logout </a>
-         <a href = "/send_tweet"> Send Tweet</a>
-          <a href = "/send_tweet2"> Send Tweet2</a>
+       </li>
+        <li>
+        
+          <a href = "/send_tweet2"> Send Tweet</a>
+      </li>
 
         
         {% else %}
-
+        <li>
         <a href = "/register"> Register </a>
+        </li>
+        <li>
          <a href = "/login"> login </a>
+     </li>
          {% endif %}
-
-
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+</div>
+   
 
 
 
@@ -33,7 +84,7 @@
 	 {% if user.is_authenticated %}
 	 <h3>Welcome {{user}}</h3>
      {{is}}
-     <h2>Would you like to send a tweet?</h2>
+    
      <ul>
      {% for tweet in tweets %}
      <li>{{tweet}}</li>
@@ -44,5 +95,12 @@
     {% block content %}{% endblock %}
 
 
+
+
+
+{% load staticfiles %}
+    <script type ="text/javascript" src="{% static "user_system/jquery.js" %}"></script>
+    {% load staticfiles %}
+    <script src="{% static "user_system/js/bootstrap.js" %}"></script>
     </body>
 </html>

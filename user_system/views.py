@@ -37,6 +37,7 @@ class TweetView(CreateView):
 	model = TweetToSend
 	success_url = '/send_tweet2'
 	form_class = TweetForm
+
 	def post(self, request, *args, **kwargs):
 		
 		form = TweetForm(request.POST)
@@ -44,7 +45,7 @@ class TweetView(CreateView):
 
 			data = form.cleaned_data
   			field = data['original_tweet']
-  			
+
 			current_user = UserSocialAuth.objects.get(user__username = request.user)
 			consumer_key = settings.TWITTER_CONSUMER_KEY
 			consumer_secret = settings.TWITTER_CONSUMER_SECRET
@@ -66,6 +67,12 @@ class TweetView(CreateView):
 			api.update_status(field)
 
 			return HttpResponse("<html><body>Tweet sent!!!!</body></html>")
+
+		else:
+			
+			return render(request, 'user_system/tweettosend_form.html', {
+				'form' : form,
+				})
 
 
 
