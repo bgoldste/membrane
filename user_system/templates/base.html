@@ -11,7 +11,8 @@
     <link href="{% static "user_system/css/bootstrap.min.css" %}" rel="stylesheet">
 
     {% load staticfiles %}
-    <link href="{% static "user_system/base.css" %}" rel="stylesheet">
+   <link href="{% static "user_system/base.css" %}" rel="stylesheet">
+
 
    
   
@@ -59,6 +60,13 @@
         
           <a href = "/send_tweet2"> Send Tweet</a>
       </li>
+      <li>
+        <a href = "/users/{{user}}"> {{user}} </a>
+      </li>
+      <li>
+        
+          <a href = "/review/"> Review</a>
+      </li>
 
         
         {% else %}
@@ -77,21 +85,13 @@
    
 
 
-
-   		
+	
  
 </nav>
-	 {% if user.is_authenticated %}
-	 <h3>Welcome {{user}}</h3>
-     {{is}}
-    
-     <ul>
-     {% for tweet in tweets %}
-     <li>{{tweet}}</li>
-    </ul>
-    </form>
-	 {% endfor %}
-     {% endif %}
+
+
+
+
     {% block content %}{% endblock %}
 
 

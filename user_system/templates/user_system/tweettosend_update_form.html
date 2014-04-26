@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container theme-showcase" role="main">
+
+
+<div class="jumbotron">
+<h2>Let's verify some tweets.?</h2>
+{% if form.errors %}
+<div class="alert alert-danger alert-dismissable">
+<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+<h1>{{form.errors}}</h1>
+</div>
+{% endif %}
+
+
+{% if form.success %}
+<h3>SUCCESS!</h3>
+
+{% endif %}
+<p>Edit here:</p>
+<form action="" method="POST" >{% csrf_token %}
+	 <p>{{ form.user }}</p>
+    <p>{{ form.original_tweet }}</p>
+    <p>{{form.fit_to_send}} Fit to tweet?</p>
+    <button  type="submit" value="Create" class="btn btn-primary btn-lg" />Tweet!  &raquo;</button>
+
+
+
+</form>
+
+</div>
+
+
+
+</div>
+
+
+
+
+{% endblock %}

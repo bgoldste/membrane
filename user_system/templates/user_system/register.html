@@ -1,13 +1,53 @@
-<!DOCTYPE HTML>
-<html>
+{% extends "base.html" %}
+{% block content %}
 
-<body>
-<h1>2nd version:</h1>
-<p>{{users}}</p>
-<h1>Current Groups:</h1>
-<p>{{groups}}</p>
+<div class="jumbotron">
+	 {% if user.is_authenticated %}
+	 <h3>Welcome {{user}}</h3>
+    {% endif %}
 
 
-<a href="{% url 'socialauth_begin' 'twitter' %}">Login with twitter</a>
 
-</body>
+    <h2>Here's what's been said already:</h2>
+   
+
+     <ul class ="list-group">
+    {% for tweet in good_tweets %}
+  
+     <li class="{% cycle "list-group-item list-group-item-info" "list-group-item list-group-item-success" %}"> " {{tweet}} "
+
+       <span class="badge">{{tweet.date}}</span>
+
+    </li>
+   
+      {% endfor %}
+    </ul>
+    </form>
+	
+
+</div>
+
+<div class="jumbotron">
+
+    <h2>oops, we blocked these dirty things from being sent:</h2>
+    <p>y'all should be ashamed.</p>
+   
+
+     <ul class ="list-group">
+    {% for tweet in bad_tweets %}
+  
+     <li class="{% cycle "list-group-item list-group-item-danger" "list-group-item list-group-item-warning" %}"> " {{tweet}} "
+
+       <span class="badge">{{tweet.date}}</span>
+
+    </li>
+   
+      {% endfor %}
+
+   
+    </ul>
+    </form>
+  
+
+</div>
+{% endblock %}

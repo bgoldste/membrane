@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron">
+	 {% if user.is_authenticated %}
+	 <h3>Welcome {{user}}</h3>
+    {% endif %}
+
+
+
+    <h2>We're glad you're a user.</h2>
+   
+
+  
+    </ul>
+    </form>
+	
+
+</div>
+
+<div class="jumbotron">
+
+    <h2>We help you say the right thing. Everytime. {{twitter_account}}</h2>
+    <p>guaranteed.</p>
+   
+
+     <ul class ="list-group">
+    {% for tweet in bad_tweets %}
+  
+     <li class="{% cycle "list-group-item list-group-item-danger" "list-group-item list-group-item-warning" %}"> " {{tweet}} "
+
+       <span class="badge">{{tweet.date}}</span>
+
+    </li>
+   
+      {% endfor %}
+
+   
+    </ul>
+    </form>
+  
+
+</div>
+{% endblock %}

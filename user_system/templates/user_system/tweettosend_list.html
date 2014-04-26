@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+<div class="jumbotron">
+    <h1 style = "color:orange;">Here are the tweets in the cue.</h1>
+  
+
+</div>
+
+{% for tweet in object_list %}
+<div class="jumbotron">
+	<p>{{tweet.original_tweet}}</p>
+    <button><a href ="/review/{{tweet.original_tweet}}"> Edit </a></button>
+
+</div>
+
+{% endfor %}
+
+
+{% endblock %}

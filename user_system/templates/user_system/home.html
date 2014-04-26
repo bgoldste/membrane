@@ -1,2 +1,67 @@
 {% extends "base.html" %}
+{% block content %}
 
+<div class="jumbotron">
+	 {% if user.is_authenticated %}
+	 <h3>Welcome {{user}}</h3>
+    {% endif %}
+
+
+
+    <h2>Here's what's been said already:</h2>
+   
+
+   
+      <ul class ="list-group">
+    {% for tweet in good_tweets %}
+  
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Sent by:{{tweet.user}}</h3>
+        <span class="badge pull-right">{{tweet.date}}</span>
+      </div>
+      <div class="panel-body">
+      <p>" {{tweet.original_tweet}} "</p>
+      </div>
+    </div>
+    {% endfor %}
+
+    </li>
+    </ul>
+    </form>
+	
+
+</div>
+
+<div class="jumbotron">
+
+    <h2>oops, we blocked these dirty things from being sent:</h2>
+    <p>y'all should be ashamed.</p>
+   
+
+     <ul class ="list-group">
+    {% for tweet in bad_tweets %}
+  
+    <div class="panel panel-primary">
+      <div class="panel-heading bad">
+        <h3 class="panel-title">Sent by:{{tweet.user}}</h3>
+        <span class="badge pull-right">{{tweet.date}}</span>
+      </div>
+      <div class="panel-body">
+      <p>" {{tweet.original_tweet}} "</p>
+      </div>
+    </div>
+
+    </li>
+   
+      {% endfor %}
+
+   
+    </ul>
+    </form>
+
+
+  
+
+</div>
+{% endblock %}
