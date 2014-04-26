@@ -29,6 +29,7 @@ class TweetForm(ModelForm):
 		model = TweetToSend
 		widgets = {
 			'original_tweet' : forms.TextInput(attrs = {'placeholder' :'write your tweet here', }),
+			'fit_to_tweet': forms.CheckboxInput(),
 				
 
 		}
@@ -42,6 +43,7 @@ class TweetForm(ModelForm):
 			raise ValidationError("Would you kiss your mother with that mouth? Try again, smarty-pants.")
 		
 		return tweet
+
 		"""
 	def save(self, commit = True):
 		tweet = self.cleaned_data['original_tweet']

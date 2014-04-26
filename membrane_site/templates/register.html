@@ -1,13 +1,8 @@
-<!DOCTYPE HTML>
-<html>
+{% block content %}
+<form action = "/login/" method="post">{% csrf_token %}
+	{{form.as_p}}
+<input type="submit" value="Submit" />
+</form>
+<h1>hi</h1>
 
-<body>
-<h1>2nd version:</h1>
-<p>{{users}}</p>
-<h1>Current Groups:</h1>
-<p>{{groups}}</p>
-
-
-<a href="{% url 'socialauth_begin' 'twitter' %}">Login with twitter</a>
-
-</body>
+{% endblock %}
